@@ -20,31 +20,65 @@
             :on-hit="githubCallback"
             async="https://api.github.com/search/users?q="
     ></typeahead>
-     <!-- </span>-->
-   <!-- <typeahead :data="USstate" placeholder="USA states"></typeahead>-->
 
+    <h2>Components</h2>
+    <ul id="repo-list" v-if="repos.length !== 0">
+      <repo-item
+              v-for="(repo, index) in repos" :key="repo.id"
+              v-on:itemSelected="selectRepo"
+              v-bind:selectedId="selectedId"
+              v-bind:item="repo">
+      </repo-item>
+    </ul>
+    <h2 v-if="userHasNoRepos()">User has no repos</h2>
   </div>
 </template>
 
 <script>
 import typeahead from 'vue-strap/src/Typeahead';
 import 'bootstrap-css-only/css/bootstrap.css';
+import getGithubRepos from '../modules/getGithubRepos';
+import RepoItem from './RepoItem';
+import RepoDetails from './RepoDetails';
+
 /* import '../assets/css/Typeahead.css'; */
 
+/* function getUsersRepos(data,cb) {
+  ajax( "http://some.api/person", data, cb );
+} */
+
 export default {
-  name: 'hello',
+  name: 'search',
   components: {
     typeahead,
+    'repo-item': RepoItem,
+    'repo-details': RepoDetails,
   },
   data() {
     return {
       githubTemplate: '<img width="18px" height="18px" :src="item.avatar_url"/><span>{{item.login}}</span>',
+      repos: [],
+      selectedId: null,
     };
   },
   methods: {
-    githubCallback() {
-
-
+    selectRepo(selectedId) {
+      console.log(`${selectedId} is selected`);
+      this.$set(this, 'selectedId', selectedId);
+    },
+    githubCallback(item) {
+      getGithubRepos(item.repos_url, this.renderRepos);
+    },
+    renderRepos(res) {
+      if (res.data.length) {
+        this.repos = res.data;
+      } else {
+        this.repos = [];
+      }
+      // tell them nothing came back
+    },
+    userHasNoRepos() {
+      return this.selectedId !== null && this.repos.length === 0;
     },
   },
 };
@@ -70,4 +104,16 @@ a {
   color: #42b983;
 }
 
+ul#repo-list {
+
+}
+ul#repo-list li {
+  background: red;
+  display:flex;
+  padding: 20px;
+}
+ul#repo-list li div {
+  background: blue;
+  display:flex;
+}
 </style>
