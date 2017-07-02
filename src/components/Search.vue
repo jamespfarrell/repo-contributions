@@ -72,6 +72,7 @@ export default {
     renderRepos(res) {
       if (res.data.length) {
         this.repos = res.data;
+        // this.$set(this, 'repos', res.data);
       } else {
         this.repos = [];
       }
@@ -108,7 +109,7 @@ ul#repo-list {
 
 }
 ul#repo-list li {
-  background: red;
+  background: #eee;
   display:flex;
   padding: 20px;
 }

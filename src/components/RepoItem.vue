@@ -3,19 +3,25 @@
         {{ item.name }}
         <div v-if="isSelected()">
             <div>
-                <repo-details v-bind:repoDetails="item" :key="item.id" ></repo-details>
+                <repo-details v-bind:contributors="contributors" :key="item.id" ></repo-details>
             </div>
         </div>
     </li>
 </template>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
+  import axios from 'axios';
   import RepoDetails from './RepoDetails';
 
   export default Vue.component('repo-item', {
     props: ['item', 'selectedId'],
     components: {
       'repo-details': RepoDetails,
+    },
+    data() {
+      return {
+        contributors: [],
+      };
     },
     methods: {
       clicked() {
@@ -27,7 +33,19 @@
         return this.selectedId === this.item.id;
       },
       loadRepoDetails(contributorsUrl) {
-        console.log(contributorsUrl);
+        axios
+          .get(contributorsUrl)
+          .then(this.assignContributors)
+          .catch(() => {
+            alert(`There was an error calling ${contributorsUrl}`);
+          });
+      },
+      assignContributors(contributors) {
+        if (contributors.data.length) {
+          this.$set(this, 'contributors', contributors.data);
+        } else {
+          this.contributors = [];
+        }
       },
     },
   });
