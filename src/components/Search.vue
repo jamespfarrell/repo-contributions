@@ -24,7 +24,6 @@
 
 <script>
 import typeahead from 'vue-strap/src/Typeahead';
-// import typeahead from './TypeAhead';
 import { getUrl } from '../modules/http';
 import RepoItem from './RepoItem';
 import RepoDetails from './RepoDetails';
@@ -54,8 +53,7 @@ export default {
     },
     renderRepos(res) {
       if (res.data.length) {
-        this.repos = res.data;
-        // this.$set(this, 'repos', res.data);
+        this.$set(this, 'repos', res.data);
       } else {
         this.repos = [];
       }
@@ -118,7 +116,7 @@ ul#repo-list li:hover {
   }
 }
 ul#repo-list li div {
-  background: blue;
+  background: $blue;
 }
 #searchContainer {
   width: 40%;

@@ -2,6 +2,12 @@
 
 > Githuberoo allows you to search for Github users by username and see what contributions they have made to each repository.
 
+Details of the build set up are below, but the easiest way to run this is to clone the repository, then run:
+``` bash
+# install dependencies
+npm install
+```
+
 ## Build Setup
 
 ``` bash
@@ -13,6 +19,7 @@ npm run dev
 
 # build for production with minification
 npm run build
+
 
 # build for production and view the bundle analyzer report
 npm run build --report
