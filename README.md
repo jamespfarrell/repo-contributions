@@ -4,8 +4,31 @@
 
 Details of the build set up are below, but the easiest way to run this is to clone the repository, then run:
 ``` bash
+
+# Clone the repo:
+
+git clone git@github.com:jamespfarrell/repo-contributions.git
+
+or 
+
+git clone https://github.com/jamespfarrell/repo-contributions.git
+
+
+# go into the new directory:
+cd repo-contributions
+
 # install dependencies
 npm install
+
+# You can now run it in dev mode by running
+
+npm start
+ 
+```
+and going to http://localhost:8080/#/
+
+See below for building and running in a production mode
+
 ```
 
 ## Build Setup

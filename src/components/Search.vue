@@ -69,13 +69,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
-$blue: #35495E;
-$green: #41B883;
-$black: #35495E;
+$primaryColour: #35495E;
+$secondaryColour: #41B883;
+$textColour: #35495E;
 
 * {
   font-family: 'Open Sans',  Arial, sans-serif;
-  color: $black;
+  color: $textColour;
 }
 h1 {
   font-size: 44px;
@@ -83,7 +83,7 @@ h1 {
 h1, h2 {
   font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   font-weight: normal;
-  color: $blue;
+  color: $primaryColour;
 }
 
 ul {
@@ -97,33 +97,40 @@ li {
 }
 
 a {
-  color: $green;
+  color: $secondaryColour;
 }
 
-ul#repo-list li {
-  background: #eee;
-  display:block;
-  padding: 10px;
-  margin:0;
-}
-ul#repo-list li:hover {
-  cursor: pointer;
-  background: $green;
-  color: white;
-  div {
+ul#repo-list
+{
+  li {
     background: #eee;
-    border:3px solid red;
+    display: block;
+    padding: 10px;
+    margin: 0;
+    div {
+      background: $primaryColour;
+    }
+  }
+
+  li:hover {
+    cursor: pointer;
+    background: $secondaryColour;
+    color: white;
+
+    div {
+      background: #eee;
+      border: 3px solid red;
+    }
   }
 }
-ul#repo-list li div {
-  background: $blue;
-}
+
 #searchContainer {
   width: 40%;
   margin:0 auto;
 }
 </style>
 <style lang="scss">
+/* Start of type ahead styles */
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -163,6 +170,7 @@ ul#repo-list li div {
 .dropdown-menu > li > a > img {
   margin-right: 20px;
 }
+
 .dropdown-menu > li > a {
   cursor: pointer;
   padding: 3px 0;
