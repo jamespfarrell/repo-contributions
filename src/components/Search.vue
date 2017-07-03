@@ -13,9 +13,8 @@
     ></typeahead>-->
     <!--<span v-on:keyup="githubCallback">-->
     <typeahead
-            placeholder="Github users, async via api.github.com"
+            placeholder="Search for a github username"
             async-key="items"
-            src="https://api.github.com/search/users?q="
             :template="githubTemplate"
             :on-hit="githubCallback"
             async="https://api.github.com/search/users?q="
@@ -36,8 +35,9 @@
 
 <script>
 import typeahead from 'vue-strap/src/Typeahead';
-import 'bootstrap-css-only/css/bootstrap.css';
-import getGithubRepos from '../modules/getGithubRepos';
+/* import 'bootstrap-css-only/css/bootstrap.css';*/
+/* import '../assets/sass/styles.scss'; */
+import { getUrl } from '../modules/http';
 import RepoItem from './RepoItem';
 import RepoDetails from './RepoDetails';
 
@@ -66,7 +66,9 @@ export default {
       this.$set(this, 'selectedId', selectedId);
     },
     githubCallback(item) {
-      getGithubRepos(item.repos_url, this.renderRepos);
+      getUrl(item.repos_url, this.renderRepos, () => {
+        alert(`There was an error calling ${item.repos_url}`);
+      });
     },
     renderRepos(res) {
       if (res.data.length) {
@@ -85,7 +87,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 h1, h2 {
   font-weight: normal;
 }
@@ -119,5 +121,50 @@ ul#repo-list li:hover {
 ul#repo-list li div {
   background: blue;
   display:flex;
+}
+</style>
+<style scoped lang="scss">
+.dropdown-menu {
+  border: 1px solid red;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  background: red;
+}
+
+.dropdown-menu > li > a {
+  cursor: pointer;
+}
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
 }
 </style>

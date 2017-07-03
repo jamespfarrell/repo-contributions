@@ -10,7 +10,7 @@
 </template>
 <script type="text/ecmascript-6">
   import Vue from 'vue';
-  import axios from 'axios';
+  import { getUrl } from '../modules/http';
   import RepoDetails from './RepoDetails';
 
   export default Vue.component('repo-item', {
@@ -32,12 +32,9 @@
         return this.selectedId === this.item.id;
       },
       loadRepoDetails(contributorsUrl) {
-        axios
-          .get(contributorsUrl)
-          .then(this.assignContributors)
-          .catch(() => {
-            alert(`There was an error calling ${contributorsUrl}`);
-          });
+        getUrl(contributorsUrl, this.assignContributors, () => {
+          alert(`There was an error calling ${contributorsUrl}`);
+        });
       },
       assignContributors(contributors) {
         if (contributors.data.length) {
