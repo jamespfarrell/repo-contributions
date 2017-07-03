@@ -24,6 +24,7 @@
 
 <script>
 import typeahead from 'vue-strap/src/Typeahead';
+// import typeahead from './TypeAhead';
 import { getUrl } from '../modules/http';
 import RepoItem from './RepoItem';
 import RepoDetails from './RepoDetails';
