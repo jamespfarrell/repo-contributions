@@ -25,7 +25,6 @@
     },
     methods: {
       clicked() {
-        console.log('emit item selected');
         this.$emit('itemSelected', this.item.id);
         this.loadRepoDetails(this.item.contributors_url);
       },

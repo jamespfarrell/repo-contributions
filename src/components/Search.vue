@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     selectRepo(selectedId) {
-      console.log(`${selectedId} is selected`);
       this.$set(this, 'selectedId', selectedId);
     },
     githubCallback(item) {
@@ -112,6 +111,10 @@ ul#repo-list li {
   background: #eee;
   display:flex;
   padding: 20px;
+}
+ul#repo-list li:hover {
+    cursor: pointer;
+    background: #FFF;
 }
 ul#repo-list li div {
   background: blue;
