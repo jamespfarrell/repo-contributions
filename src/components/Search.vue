@@ -1,6 +1,6 @@
 <template>
   <div id="searchContainer">
-    <h1>Githubergoo</h1>
+    <h1>Githuberoo</h1>
     <h2>Please search for a github user below</h2>
     <typeahead
             placeholder="Search for a github username"

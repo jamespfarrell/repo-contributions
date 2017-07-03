@@ -1,6 +1,6 @@
-# repo-contributions
+# Githuberoo
 
-> A Vue.js project
+> Githuberoo allows you to search for Github users by username and see what contributions they have made to each repository.
 
 ## Build Setup
 
