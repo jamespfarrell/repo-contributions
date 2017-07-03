@@ -1,11 +1,9 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <li v-on:click="clicked">
-        {{ item.name }}
-        <div v-if="isSelected()">
-            <div>
-                <repo-details v-bind:contributors="contributors" :key="item.id" ></repo-details>
-            </div>
-        </div>
+        <h3>{{ item.name }}</h3>
+        <template v-if="isSelected()">
+            <repo-details v-bind:contributors="contributors" :key="item.id" ></repo-details>
+        </template>
     </li>
 </template>
 <script type="text/ecmascript-6">

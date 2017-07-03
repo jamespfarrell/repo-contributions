@@ -1,17 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>Search for a github user</h1>
+  <div id="searchContainer">
+    <h1>Githubergoo</h1>
     <h2>Please search for a github user below</h2>
-    <h4>Custom templates for results</h4>
-    <h4>Asynchronous results</h4>
-    <!--<typeahead
-            placeholder="Address, async via maps.googleapis.com"
-            async-key="results"
-            src="https://maps.googleapis.com/maps/api/geocode/json?address="
-            :template="asyncTemplate"
-            :on-hit="googleCallback"
-    ></typeahead>-->
-    <!--<span v-on:keyup="githubCallback">-->
     <typeahead
             placeholder="Search for a github username"
             async-key="items"
@@ -20,7 +10,6 @@
             async="https://api.github.com/search/users?q="
     ></typeahead>
 
-    <h2>Components</h2>
     <ul id="repo-list" v-if="repos.length !== 0">
       <repo-item
               v-for="(repo, index) in repos" :key="repo.id"
@@ -35,17 +24,9 @@
 
 <script>
 import typeahead from 'vue-strap/src/Typeahead';
-/* import 'bootstrap-css-only/css/bootstrap.css';*/
-/* import '../assets/sass/styles.scss'; */
 import { getUrl } from '../modules/http';
 import RepoItem from './RepoItem';
 import RepoDetails from './RepoDetails';
-
-/* import '../assets/css/Typeahead.css'; */
-
-/* function getUsersRepos(data,cb) {
-  ajax( "http://some.api/person", data, cb );
-} */
 
 export default {
   name: 'search',
@@ -56,7 +37,7 @@ export default {
   },
   data() {
     return {
-      githubTemplate: '<img width="18px" height="18px" :src="item.avatar_url"/><span>{{item.login}}</span>',
+      githubTemplate: '<img width="50px" height="50px" :src="item.avatar_url"/><span>{{item.login}}</span>',
       repos: [],
       selectedId: null,
     };
@@ -88,8 +69,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+
+$blue: #35495E;
+$green: #41B883;
+$black: #35495E;
+
+* {
+  font-family: 'Open Sans',  Arial, sans-serif;
+  color: $black;
+}
+h1 {
+  font-size: 44px;
+}
 h1, h2 {
+  font-family: 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   font-weight: normal;
+  color: $blue;
 }
 
 ul {
@@ -103,29 +98,34 @@ li {
 }
 
 a {
-  color: #42b983;
+  color: $green;
 }
 
-ul#repo-list {
-
-}
 ul#repo-list li {
   background: #eee;
-  display:flex;
-  padding: 20px;
+  display:block;
+  padding: 10px;
+  margin:0;
 }
 ul#repo-list li:hover {
-    cursor: pointer;
-    background: #FFF;
+  cursor: pointer;
+  background: $green;
+  color: white;
+  div {
+    background: #eee;
+    border:3px solid red;
+  }
 }
 ul#repo-list li div {
   background: blue;
-  display:flex;
+}
+#searchContainer {
+  width: 40%;
+  margin:0 auto;
 }
 </style>
-<style scoped lang="scss">
+<style lang="scss">
 .dropdown-menu {
-  border: 1px solid red;
   position: absolute;
   top: 100%;
   left: 0;
@@ -133,9 +133,9 @@ ul#repo-list li div {
   display: none;
   float: left;
   min-width: 160px;
-  padding: 5px 0;
+  padding: 5px 2%;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 28px;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -146,25 +146,62 @@ ul#repo-list li div {
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  width:96%;
+
+  li
+  {
+    width:100%;
+    margin: 10px 0;
+
+  }
+  li.active {
+    background: #41B883;
+    color: white ;
+  }
+
 }
 
-li {
-  display: list-item;
-  text-align: -webkit-match-parent;
-  background: red;
+.dropdown-menu > li > a > img {
+  margin-right: 20px;
 }
-
 .dropdown-menu > li > a {
   cursor: pointer;
-}
-
-.dropdown-menu > li > a {
-  display: block;
-  padding: 3px 20px;
+  padding: 3px 0;
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
   color: #333;
   white-space: nowrap;
+  font-size: 28px;
+
+  img {
+    margin-right: 20px;
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.open > .dropdown-menu {
+  display: block;
+}
+.form-control {
+  display: block;
+  width: 96%;
+  padding: 6px 2%;
+  font-size: 28px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 </style>
