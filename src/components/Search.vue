@@ -66,12 +66,8 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-
-$primaryColour: #35495E;
-$secondaryColour: #41B883;
-$textColour: #35495E;
+<style lang="scss">
+@import "../assets/sass/styles.scss";
 
 * {
   font-family: 'Open Sans',  Arial, sans-serif;
@@ -108,7 +104,8 @@ ul#repo-list
     padding: 10px;
     margin: 0;
     div {
-      background: $primaryColour;
+      background: #eee;
+      padding: 10px 30px 30px 30px;
     }
   }
 
@@ -119,96 +116,19 @@ ul#repo-list
 
     div {
       background: #eee;
-      border: 3px solid red;
     }
   }
 }
 
 #searchContainer {
-  width: 40%;
+  width: 80%;
+  @include breakpoint(md) {
+    width: 60%;
+  }
+  @include breakpoint(lg) {
+    width: 50%;
+  }
   margin:0 auto;
 }
 </style>
-<style lang="scss">
-/* Start of type ahead styles */
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  display: none;
-  float: left;
-  min-width: 160px;
-  padding: 5px 2%;
-  margin: 2px 0 0;
-  font-size: 28px;
-  text-align: left;
-  list-style: none;
-  background-color: #fff;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 1px solid #ccc;
-  border: 1px solid rgba(0, 0, 0, .15);
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-  width:96%;
 
-  li
-  {
-    width:100%;
-    margin: 10px 0;
-
-  }
-  li.active {
-    background: #41B883;
-    color: white ;
-  }
-
-}
-
-.dropdown-menu > li > a > img {
-  margin-right: 20px;
-}
-
-.dropdown-menu > li > a {
-  cursor: pointer;
-  padding: 3px 0;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.42857143;
-  color: #333;
-  white-space: nowrap;
-  font-size: 28px;
-
-  img {
-    margin-right: 20px;
-  }
-
-  span {
-    display: flex;
-    align-items: center;
-  }
-}
-
-.open > .dropdown-menu {
-  display: block;
-}
-.form-control {
-  display: block;
-  width: 96%;
-  padding: 6px 2%;
-  font-size: 28px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-</style>

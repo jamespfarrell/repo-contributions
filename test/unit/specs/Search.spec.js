@@ -1,11 +1,14 @@
+/*
 import Vue from 'vue';
-import Hello from '@/components/Hello';
+import Search from '@/components/Search';
 
-describe('Hello.vue', () => {
+
+describe('Search.vue', () => {
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(Hello);
+    const Constructor = Vue.extend(Search);
     const vm = new Constructor().$mount();
     expect(vm.$el.querySelector('#searchContainer h1').textContent)
       .to.equal('Githubergoo');
   });
 });
+*/
