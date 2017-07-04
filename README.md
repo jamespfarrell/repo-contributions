@@ -47,6 +47,9 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Testing:
+
+I had wanted to include unit tests, but hit a frustrating issue with the sass-loader in Webpack, and after a couple of hours I have decided return to this later, as I have some pressing issues that need my attention right now.
